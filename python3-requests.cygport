@@ -1,7 +1,7 @@
 inherit python3-distutils
 
 NAME="python3-requests"
-VERSION=2.0.1
+VERSION=2.2.1
 RELEASE=1
 CATEGORY="Python"
 SUMMARY="Py3K HTTP/1.1 request module"
@@ -10,3 +10,10 @@ form data, multipart files, and parameters with simple Python dictionaries, and
 access the response data in the same way. It's powered by httplib and urllib3,
 but it does all the hard work and crazy hacks for you."
 HOMEPAGE="http://www.python-requests.org/"
+
+PATCH_URI="2.2.1-system-deps.patch"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook() {
+	rm -fr requests/packages/
+}
