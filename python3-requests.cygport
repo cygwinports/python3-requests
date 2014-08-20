@@ -1,19 +1,25 @@
 inherit python3-distutils
 
 NAME="python3-requests"
-VERSION=2.2.1
+VERSION=2.3.0
 RELEASE=1
 CATEGORY="Python"
-SUMMARY="Py3K HTTP/1.1 request module"
+SUMMARY="Python3 HTTP/1.1 request module"
 DESCRIPTION="Requests allow you to send HTTP/1.1 requests. You can add headers,
 form data, multipart files, and parameters with simple Python dictionaries, and
 access the response data in the same way. It's powered by httplib and urllib3,
 but it does all the hard work and crazy hacks for you."
 HOMEPAGE="http://www.python-requests.org/"
 
-PATCH_URI="2.2.1-system-deps.patch"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/python-requests.git/plain/python-requests-system-cert-bundle.patch
+	http://pkgs.fedoraproject.org/cgit/python-requests.git/plain/python-requests-system-chardet-not-charade.patch
+	http://pkgs.fedoraproject.org/cgit/python-requests.git/plain/python-requests-system-urllib3.patch
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_unpack_hook() {
 	rm -fr requests/packages/
+	rm -f  requests/cacert.pem
+	sed -i -e '/requests\.packages/d' setup.py
 }
