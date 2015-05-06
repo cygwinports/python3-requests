@@ -1,7 +1,7 @@
 inherit python3-distutils
 
 NAME="python3-requests"
-VERSION=2.3.0
+VERSION=2.7.0
 RELEASE=1
 CATEGORY="Python"
 SUMMARY="Python3 HTTP/1.1 request module"
@@ -13,9 +13,10 @@ HOMEPAGE="http://www.python-requests.org/"
 
 PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/python-requests.git/plain/python-requests-system-cert-bundle.patch
-	http://pkgs.fedoraproject.org/cgit/python-requests.git/plain/python-requests-system-chardet-not-charade.patch
-	http://pkgs.fedoraproject.org/cgit/python-requests.git/plain/python-requests-system-urllib3.patch
+	2.7.0-unbundle-deps.patch
 "
+
+ARCH=noarch
 
 CYGPORT_USE_UNSTABLE_API=1
 src_unpack_hook() {
